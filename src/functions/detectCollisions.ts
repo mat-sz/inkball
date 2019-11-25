@@ -1,5 +1,5 @@
 import Matter from 'matter-js';
-import { GameState } from '../Types';
+import { GameState, Color } from '../Types';
 
 let engine: Matter.Engine;
 let state: GameState;
@@ -22,7 +22,7 @@ const collisionEvent = (event: Matter.IEventCollision<Matter.Engine>) => {
                 state.lines = state.lines.filter((line) => line != theLine);
             }
 
-            if (theGoal) {
+            if (theGoal && (theGoal.color === Color.ANY || theGoal.color === theBall.color)) {
                 Matter.World.remove(engine.world, theBall.body);
                 state.balls = state.balls.filter((ball) => ball !== theBall);
                 if (state.balls.length == 0) {

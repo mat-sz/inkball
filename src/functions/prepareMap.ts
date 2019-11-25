@@ -5,7 +5,7 @@ import { boxWidth } from '../constants';
 import Wall from '../drawables/Wall';
 import Ball from '../drawables/Ball';
 import Goal from '../drawables/Goal';
-import { GameState } from '../Types';
+import { GameState, Color } from '../Types';
 
 export default function prepareMap(map: number[][],
     world: Matter.World,
@@ -15,13 +15,31 @@ export default function prepareMap(map: number[][],
         row.forEach((place, x) => {
             switch (place) {
                 case 1:
-                    state.walls.push(Wall(boxWidth * x, boxWidth * y));
+                    state.walls.push(Wall(boxWidth * x, boxWidth * y, Color.ANY));
                     break;
                 case 2:
-                    state.goals.push(Goal(boxWidth * x, boxWidth * y));
+                    state.walls.push(Wall(boxWidth * x, boxWidth * y, Color.GOLD));
                     break;
                 case 3:
-                    state.balls.push(Ball(boxWidth * x, boxWidth * y));
+                    state.goals.push(Goal(boxWidth * x, boxWidth * y, Color.ANY));
+                    break;
+                case 4:
+                    state.goals.push(Goal(boxWidth * x, boxWidth * y, Color.RED));
+                    break;
+                case 5:
+                    state.goals.push(Goal(boxWidth * x, boxWidth * y, Color.BLUE));
+                    break;
+                case 5:
+                    // Goals for gold balls?
+                    break;
+                case 7:
+                    state.balls.push(Ball(boxWidth * x, boxWidth * y, Color.RED));
+                    break;
+                case 8:
+                    state.balls.push(Ball(boxWidth * x, boxWidth * y, Color.BLUE));
+                    break;
+                case 9:
+                    // Gold balls?
                     break;
             }
         });

@@ -3,6 +3,7 @@ import Matter from 'matter-js';
 export interface Drawable {
     draw: (ctx: CanvasRenderingContext2D) => void,
     body: Matter.Body,
+    color?: Color,
 };
 
 export interface Segment {
@@ -17,4 +18,11 @@ export interface GameState {
     goals: Drawable[],
     lines: Drawable[][],
     balls: Drawable[],
+};
+
+export enum Color {
+    ANY,
+    RED,
+    BLUE,
+    GOLD,
 };
