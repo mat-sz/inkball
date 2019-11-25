@@ -7,9 +7,7 @@ import prepareMap from './functions/prepareMap';
 import enableInput from './functions/enableInput';
 import beginDrawing from './functions/beginDrawing';
 import detectCollisions from './functions/detectCollisions';
-
-import firstMap from './maps/first';
-import winMap from './maps/win';
+import maps from './maps';
 
 import { GameState } from './Types';
 
@@ -25,6 +23,7 @@ const gameState: GameState = {
     lines: [[]],
 };
 
+let currentMapIndex = 0;
 const reset = (map: number[][]) => {
     Matter.World.clear(world, false);
     gameState.walls = [];
@@ -34,9 +33,9 @@ const reset = (map: number[][]) => {
     prepareMap(map, world, gameState);
 }
 
-reset(firstMap);
+reset(maps[currentMapIndex]);
 
-document.getElementById("reset").addEventListener("click", () => reset(firstMap));
+document.getElementById("reset").addEventListener("click", () => reset(maps[currentMapIndex]));
 
 engine.world.gravity.x = 0;
 engine.world.gravity.y = 0;
@@ -45,7 +44,8 @@ Matter.Runner.run(runner, engine);
 beginDrawing(ctx, gameState, canvas.width, canvas.height);
 
 detectCollisions(engine, gameState, () => {
-    reset(winMap);
+    if (currentMapIndex !== maps.length - 1) currentMapIndex++;
+    reset(maps[currentMapIndex]);
 });
 
 enableInput(canvas, (line) => {
