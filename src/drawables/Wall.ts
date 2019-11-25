@@ -1,9 +1,7 @@
 import Matter from 'matter-js';
 import { Drawable } from '../Types';
 import box from '../img/box.png';
-
-const width = 40;
-const height = 40;
+import { boxWidth } from '../constants';
 
 const image = new Image();
 image.src = box;
@@ -16,7 +14,7 @@ image.src = box;
  * @param height 
  */
 export default function Wall(x: number, y: number): Drawable {
-    const body = Matter.Bodies.rectangle(x + width / 2, y + height / 2, width, height, { mass: Infinity, inertia: Infinity });
+    const body = Matter.Bodies.rectangle(x + boxWidth / 2, y + boxWidth / 2, boxWidth, boxWidth, { mass: Infinity, inertia: Infinity });
     
     body.isStatic = true;
     body.restitution = 1;
@@ -27,7 +25,7 @@ export default function Wall(x: number, y: number): Drawable {
             const pattern = ctx.createPattern(image, 'repeat');
             ctx.fillStyle = pattern;
         }
-        ctx.fillRect(body.position.x - width / 2, body.position.y - height / 2, width, height);
+        ctx.fillRect(body.position.x - boxWidth / 2, body.position.y - boxWidth / 2, boxWidth, boxWidth);
     }
 
     return {

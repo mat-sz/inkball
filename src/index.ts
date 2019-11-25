@@ -8,6 +8,8 @@ import enableInput from './functions/enableInput';
 import beginDrawing from './functions/beginDrawing';
 import detectCollisions from './functions/detectCollisions';
 
+import map from './map';
+
 import { GameState } from './Types';
 
 const canvas: HTMLCanvasElement = document.getElementById('canvas') as HTMLCanvasElement;
@@ -20,9 +22,18 @@ const gameState: GameState = {
     goals: [],
     balls: [],
     lines: [[]],
+};
+
+const reset = () => {
+    Matter.World.clear(world, false);
+    gameState.walls = [];
+    gameState.goals = [];
+    gameState.balls = [];
+    gameState.lines = [[]];
+    prepareMap(map, world, gameState);
 }
 
-prepareMap(world, gameState);
+reset();
 
 engine.world.gravity.x = 0;
 engine.world.gravity.y = 0;

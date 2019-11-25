@@ -1,13 +1,14 @@
 import Matter from 'matter-js';
 
-import map, { boxWidth } from '../map';
+import { boxWidth } from '../constants';
 
 import Wall from '../drawables/Wall';
 import Ball from '../drawables/Ball';
 import Goal from '../drawables/Goal';
 import { GameState } from '../Types';
 
-export default function prepareMap(world: Matter.World,
+export default function prepareMap(map: number[][],
+    world: Matter.World,
     state: GameState) {
 
     map.forEach((row, y) => {
