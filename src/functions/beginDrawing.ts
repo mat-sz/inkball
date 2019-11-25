@@ -17,7 +17,7 @@ const draw = () => {
 
     ctx.fillRect(0, 0, canvasWidth, canvasHeight);
 
-    for (let object of [...state.walls, ...state.balls, ...state.lines.reduce((previous, line) => [...previous, ...line]), ...state.goals]) {
+    for (let object of [...state.walls, ...state.goals, ...state.balls, ...state.lines.reduce((previous, line) => [...previous, ...line])]) {
         object.draw(ctx);
     }
 
