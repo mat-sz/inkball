@@ -35,6 +35,8 @@ const reset = () => {
 
 reset();
 
+document.getElementById("reset").addEventListener("click", reset);
+
 engine.world.gravity.x = 0;
 engine.world.gravity.y = 0;
 Matter.Runner.run(runner, engine);
