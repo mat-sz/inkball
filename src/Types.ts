@@ -26,3 +26,16 @@ export enum Color {
     BLUE,
     GOLD,
 };
+
+export enum MapObject {
+    AIR = 0,
+    WALL = 1,
+    WALL_GOLD = 2,
+    GOAL_ANY = 3,
+    GOAL_RED = 4,
+    GOAL_BLUE = 5,
+    GOAL_GOLD = 6,
+    BALL_RED = 7,
+    BALL_BLUE = 8,
+    BALL_GOLD = 9,
+};

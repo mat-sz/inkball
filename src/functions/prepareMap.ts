@@ -5,7 +5,7 @@ import { boxWidth } from '../constants';
 import Wall from '../drawables/Wall';
 import Ball from '../drawables/Ball';
 import Goal from '../drawables/Goal';
-import { GameState, Color } from '../Types';
+import { GameState, Color, MapObject } from '../Types';
 
 export default function prepareMap(map: number[][],
     world: Matter.World,
@@ -14,31 +14,31 @@ export default function prepareMap(map: number[][],
     map.forEach((row, y) => {
         row.forEach((place, x) => {
             switch (place) {
-                case 1:
+                case MapObject.WALL:
                     state.walls.push(Wall(boxWidth * x, boxWidth * y, Color.ANY));
                     break;
-                case 2:
+                case MapObject.WALL_GOLD:
                     state.walls.push(Wall(boxWidth * x, boxWidth * y, Color.GOLD));
                     break;
-                case 3:
+                case MapObject.GOAL_ANY:
                     state.goals.push(Goal(boxWidth * x, boxWidth * y, Color.ANY));
                     break;
-                case 4:
+                case MapObject.GOAL_RED:
                     state.goals.push(Goal(boxWidth * x, boxWidth * y, Color.RED));
                     break;
-                case 5:
+                case MapObject.GOAL_BLUE:
                     state.goals.push(Goal(boxWidth * x, boxWidth * y, Color.BLUE));
                     break;
-                case 5:
+                case MapObject.GOAL_GOLD:
                     state.goals.push(Goal(boxWidth * x, boxWidth * y, Color.GOLD));
                     break;
-                case 7:
+                case MapObject.BALL_RED:
                     state.balls.push(Ball(boxWidth * x, boxWidth * y, Color.RED));
                     break;
-                case 8:
+                case MapObject.BALL_BLUE:
                     state.balls.push(Ball(boxWidth * x, boxWidth * y, Color.BLUE));
                     break;
-                case 9:
+                case MapObject.BALL_GOLD:
                     state.balls.push(Ball(boxWidth * x, boxWidth * y, Color.GOLD));
                     break;
             }
