@@ -16,8 +16,8 @@ image.src = box;
  * @param height 
  */
 export default function Goal(x: number, y: number): Drawable {
-    const body = Matter.Bodies.rectangle(x + width / 2, y + height / 2, width, height);
-    
+    const body = Matter.Bodies.rectangle(x + width / 2, y + height / 2, width, height, { mass: Infinity, inertia: Infinity });
+
     body.isStatic = true;
     body.restitution = 1;
 

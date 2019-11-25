@@ -14,11 +14,12 @@ image.src = ball_red;
  * @param radius 
  */
 export default function Ball(x: number, y: number): Drawable {
-    const body = Matter.Bodies.circle(x, y, radius, { inertia: Infinity });
-    
+    const body = Matter.Bodies.circle(x, y, radius, { inertia: Infinity, mass: 1 });
+
     body.restitution = 1;
     body.friction = 0;
     body.frictionAir = 0;
+    body.frictionStatic = 1;
     body.force = {x: 0.01, y: 0.01};
 
     const draw = (ctx: CanvasRenderingContext2D) => {
