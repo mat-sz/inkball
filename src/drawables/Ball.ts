@@ -31,18 +31,15 @@ export default function Ball(x: number, y: number, color: Color): Drawable {
     body.force = {x: 0.01, y: 0.01};
         
     let image: HTMLImageElement = null;
-    body.collisionFilter.group = color;
+    
     switch (color) {
         case Color.RED:
-            body.collisionFilter.mask = 0b0011;
             image = imageRed;
             break;
         case Color.BLUE:
-            body.collisionFilter.mask = 0b0101;
             image = imageBlue;
             break;
         case Color.GOLD:
-            body.collisionFilter.mask = 0b1001;
             image = imageGold;
             break;
     }

@@ -30,21 +30,17 @@ export default function Goal(x: number, y: number, color: Color): Drawable {
 
     body.isStatic = true;
     body.restitution = 1;
-    body.collisionFilter.group = color;
 
     let image = imageAny;
     
     switch (color) {
         case Color.RED:
-            body.collisionFilter.category = 0b0010;
             image = imageRed;
             break;
         case Color.BLUE:
-            body.collisionFilter.category = 0b0100;
             image = imageBlue;
             break;
         case Color.GOLD:
-            body.collisionFilter.category = 0b1000;
             image = imageGold;
             break;
     }

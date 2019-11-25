@@ -43,8 +43,14 @@ Matter.Runner.run(runner, engine);
 
 beginDrawing(ctx, gameState, canvas.width, canvas.height);
 
-detectCollisions(engine, gameState, () => {
+detectCollisions(engine, gameState,
+() => {
+    // Victory!
     if (currentMapIndex !== maps.length - 1) currentMapIndex++;
+    reset(maps[currentMapIndex]);
+},
+() => {
+    // Defeat :c
     reset(maps[currentMapIndex]);
 });
 

@@ -3,7 +3,8 @@ import { GameState, Color } from '../Types';
 
 let engine: Matter.Engine;
 let state: GameState;
-let winConditionTriggered: () => void;
+let victoryConditionTriggered: () => void;
+let defeatConditionTriggered: () => void;
 
 const collisionEvent = (event: Matter.IEventCollision<Matter.Engine>) => {
     const pairs = event.pairs;
@@ -22,11 +23,15 @@ const collisionEvent = (event: Matter.IEventCollision<Matter.Engine>) => {
                 state.lines = state.lines.filter((line) => line != theLine);
             }
 
-            if (theGoal && (theGoal.color === Color.ANY || theGoal.color === theBall.color)) {
-                Matter.World.remove(engine.world, theBall.body);
-                state.balls = state.balls.filter((ball) => ball !== theBall);
-                if (state.balls.length == 0) {
-                    winConditionTriggered();
+            if (theGoal) {
+                if (theGoal.color === Color.ANY || theGoal.color === theBall.color) {
+                    Matter.World.remove(engine.world, theBall.body);
+                    state.balls = state.balls.filter((ball) => ball !== theBall);
+                    if (state.balls.length == 0) {
+                        victoryConditionTriggered();
+                    }
+                } else {
+                    defeatConditionTriggered();
                 }
             }
     
@@ -39,10 +44,12 @@ const collisionEvent = (event: Matter.IEventCollision<Matter.Engine>) => {
 
 export default function detectCollisions(_engine: Matter.Engine,
     _state: GameState,
-    _winConditionTriggered: () => void) {
+    _victoryConditionTriggered: () => void,
+    _defeatConditionTriggered: () => void) {
 
     engine = _engine;
     state = _state;
-    winConditionTriggered = _winConditionTriggered;
+    victoryConditionTriggered = _victoryConditionTriggered;
+    defeatConditionTriggered = _defeatConditionTriggered;
     Matter.Events.on(engine, 'collisionStart', collisionEvent);
 }
