@@ -2,6 +2,7 @@ import Matter from 'matter-js';
 import { Drawable, Color } from '../Types';
 import ball_red from '../img/ball_red.png';
 import ball_blue from '../img/ball_blue.png';
+import ball_gold from '../img/ball_gold.png';
 
 const radius = 15;
 
@@ -10,6 +11,9 @@ imageRed.src = ball_red;
 
 const imageBlue = new Image();
 imageBlue.src = ball_blue;
+
+const imageGold = new Image();
+imageGold.src = ball_gold;
 
 /**
  * Creates a new Drawable containing a ball.
@@ -36,6 +40,10 @@ export default function Ball(x: number, y: number, color: Color): Drawable {
         case Color.BLUE:
             body.collisionFilter.mask = 0b0101;
             image = imageBlue;
+            break;
+        case Color.GOLD:
+            body.collisionFilter.mask = 0b1001;
+            image = imageGold;
             break;
     }
 

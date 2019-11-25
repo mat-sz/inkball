@@ -3,6 +3,7 @@ import { Drawable, Color } from '../Types';
 import goal from '../img/goal.png';
 import goal_red from '../img/goal_red.png';
 import goal_blue from '../img/goal_blue.png';
+import goal_gold from '../img/goal_gold.png';
 import { boxWidth } from '../constants';
 
 const imageAny = new Image();
@@ -13,6 +14,9 @@ imageRed.src = goal_red;
 
 const imageBlue = new Image();
 imageBlue.src = goal_blue;
+
+const imageGold = new Image();
+imageGold.src = goal_gold;
 
 /**
  * Creates a new Drawable containing goal block that triggers win conditions.
@@ -38,6 +42,10 @@ export default function Goal(x: number, y: number, color: Color): Drawable {
         case Color.BLUE:
             body.collisionFilter.category = 0b0100;
             image = imageBlue;
+            break;
+        case Color.GOLD:
+            body.collisionFilter.category = 0b1000;
+            image = imageGold;
             break;
     }
 

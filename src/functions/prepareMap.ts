@@ -30,7 +30,7 @@ export default function prepareMap(map: number[][],
                     state.goals.push(Goal(boxWidth * x, boxWidth * y, Color.BLUE));
                     break;
                 case 5:
-                    // Goals for gold balls?
+                    state.goals.push(Goal(boxWidth * x, boxWidth * y, Color.GOLD));
                     break;
                 case 7:
                     state.balls.push(Ball(boxWidth * x, boxWidth * y, Color.RED));
@@ -39,7 +39,7 @@ export default function prepareMap(map: number[][],
                     state.balls.push(Ball(boxWidth * x, boxWidth * y, Color.BLUE));
                     break;
                 case 9:
-                    // Gold balls?
+                    state.balls.push(Ball(boxWidth * x, boxWidth * y, Color.GOLD));
                     break;
             }
         });
