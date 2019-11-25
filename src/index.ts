@@ -8,7 +8,8 @@ import enableInput from './functions/enableInput';
 import beginDrawing from './functions/beginDrawing';
 import detectCollisions from './functions/detectCollisions';
 
-import map from './map';
+import firstMap from './maps/first';
+import winMap from './maps/win';
 
 import { GameState } from './Types';
 
@@ -24,7 +25,7 @@ const gameState: GameState = {
     lines: [[]],
 };
 
-const reset = () => {
+const reset = (map: number[][]) => {
     Matter.World.clear(world, false);
     gameState.walls = [];
     gameState.goals = [];
@@ -33,9 +34,9 @@ const reset = () => {
     prepareMap(map, world, gameState);
 }
 
-reset();
+reset(firstMap);
 
-document.getElementById("reset").addEventListener("click", reset);
+document.getElementById("reset").addEventListener("click", () => reset(firstMap));
 
 engine.world.gravity.x = 0;
 engine.world.gravity.y = 0;
@@ -44,7 +45,7 @@ Matter.Runner.run(runner, engine);
 beginDrawing(ctx, gameState, canvas.width, canvas.height);
 
 detectCollisions(engine, gameState, () => {
-    alert('You win.');
+    reset(winMap);
 });
 
 enableInput(canvas, (line) => {

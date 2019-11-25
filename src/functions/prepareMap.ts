@@ -20,13 +20,14 @@ export default function prepareMap(map: number[][],
                 case 2:
                     state.goals.push(Goal(boxWidth * x, boxWidth * y));
                     break;
+                case 3:
+                    state.balls.push(Ball(boxWidth * x, boxWidth * y));
+                    break;
             }
         });
     });
     
     Matter.World.add(world, state.walls.map((box) => box.body));
     Matter.World.add(world, state.goals.map((goal) => goal.body));
-    
-    state.balls.push(Ball(160, 70));
     Matter.World.add(world, state.balls.map((ball) => ball.body));
 };
