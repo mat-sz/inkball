@@ -9,7 +9,7 @@ import beginDrawing from './functions/beginDrawing';
 import detectCollisions from './functions/detectCollisions';
 import maps from './maps';
 
-import { GameState } from './Types';
+import { GameState, Segment } from './Types';
 
 const canvas: HTMLCanvasElement = document.getElementById('canvas') as HTMLCanvasElement;
 const ctx = canvas.getContext('2d');
@@ -52,19 +52,23 @@ detectCollisions(engine, gameState,
 () => {
     // Defeat :c
     reset(maps[currentMapIndex]);
+},
+() => {
+    cancelDrawing();
 });
 
-enableInput(canvas, (line) => {
-    const segment = line[line.length - 1];
+const pushSegment = (segment: Segment) => {
     const lineSegment = LineSegment(segment.x1, segment.y1, segment.x2, segment.y2);
-    gameState.lines[gameState.lines.length-1].push(lineSegment);
+    if (lineSegment) {
+        gameState.lines[gameState.lines.length-1].push(lineSegment);
+        Matter.World.add(world, lineSegment.body);
+    }
+}
 
-    Matter.World.add(world, lineSegment.body);
+const cancelDrawing = enableInput(canvas, (line) => {
+    pushSegment(line[line.length - 1]);
 }, (line) => {
-    const segment = line[line.length - 1];
-    const lineSegment = LineSegment(segment.x1, segment.y1, segment.x2, segment.y2);
-    gameState.lines[gameState.lines.length-1].push(lineSegment);
-    gameState.lines.push([]);
+    pushSegment(line[line.length - 1]);
     
-    Matter.World.add(world, lineSegment.body);
+    gameState.lines.push([]);
 });

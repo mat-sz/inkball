@@ -13,6 +13,8 @@ export default function LineSegment(x1: number, y1: number, x2: number, y2: numb
     const height = 10;
     const width = Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2)) + 1;
 
+    if (width < 2) return null;
+
     const body = Matter.Bodies.rectangle((x2 + x1)/2, (y2 + y1)/2, width, height, { mass: Infinity, inertia: Infinity });
     Matter.Body.setAngle(body, angle);
     

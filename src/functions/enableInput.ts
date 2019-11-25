@@ -43,7 +43,13 @@ function endDrawing(_x: number, _y: number) {
     onFinishLine(line);
 }
 
-export default function enableInput(canvas: HTMLCanvasElement, _onUpdateLine: (line: Segment[]) => void, _onFinishLine: (line: Segment[]) => void) {
+function cancelDrawing() {
+    if (!drawing) return;
+    drawing = false;
+    onFinishLine(line);
+}
+
+export default function enableInput(canvas: HTMLCanvasElement, _onUpdateLine: (line: Segment[]) => void, _onFinishLine: (line: Segment[]) => void): () => void {
     canvas.addEventListener("mousedown", mouseDown);
     canvas.addEventListener("mousemove", mouseMove);
     canvas.addEventListener("mouseup", mouseUp);
@@ -51,4 +57,6 @@ export default function enableInput(canvas: HTMLCanvasElement, _onUpdateLine: (l
 
     onUpdateLine = _onUpdateLine;
     onFinishLine = _onFinishLine;
+
+    return cancelDrawing;
 }
