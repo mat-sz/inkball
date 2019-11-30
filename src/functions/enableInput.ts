@@ -13,12 +13,36 @@ const mouseDown = (e: MouseEvent) => {
 };
 
 const mouseMove = (e: MouseEvent) => {
-    if (!drawing) return;
     draw(e.offsetX, e.offsetY);
 };
 
 const mouseUp = (e: MouseEvent) => {
     endDrawing(e.offsetX, e.offsetY);
+};
+
+function getOffset(e: TouchEvent) {
+    const rectangle = (e.target as HTMLElement).getBoundingClientRect();
+    const touch = e.touches[0];
+    return {
+        x: (touch.pageX - rectangle.left) * 800/rectangle.width,
+        y: (touch.pageY - rectangle.top) * 800/rectangle.height,
+    };
+}
+
+const touchStart = (e: TouchEvent) => {
+    cancelDrawing();
+    const offset = getOffset(e);
+    beginDrawing(offset.x, offset.y);
+};
+
+const touchMove = (e: TouchEvent) => {
+    const offset = getOffset(e);
+    draw(offset.x, offset.y);
+};
+
+const touchEnd = (e: TouchEvent) => {
+    const offset = getOffset(e);
+    endDrawing(offset.x, offset.y);
 };
 
 function beginDrawing(_x: number, _y: number) {
@@ -50,10 +74,15 @@ function cancelDrawing() {
 }
 
 export default function enableInput(canvas: HTMLCanvasElement, _onUpdateLine: (line: Segment[]) => void, _onFinishLine: (line: Segment[]) => void): () => void {
-    canvas.addEventListener("mousedown", mouseDown);
-    canvas.addEventListener("mousemove", mouseMove);
-    canvas.addEventListener("mouseup", mouseUp);
-    canvas.addEventListener("mouseleave", mouseUp);
+    canvas.addEventListener('mousedown', mouseDown);
+    canvas.addEventListener('mousemove', mouseMove);
+    canvas.addEventListener('mouseup', mouseUp);
+    canvas.addEventListener('mouseleave', mouseUp);
+
+    canvas.addEventListener('touchstart', touchStart);
+    canvas.addEventListener('touchmove', touchMove);
+    canvas.addEventListener('touchend', touchEnd);
+    canvas.addEventListener('touchcancel', touchEnd);
 
     onUpdateLine = _onUpdateLine;
     onFinishLine = _onFinishLine;

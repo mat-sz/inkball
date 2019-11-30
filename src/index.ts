@@ -72,3 +72,8 @@ const cancelDrawing = enableInput(canvas, (line) => {
     
     gameState.lines.push([]);
 });
+
+document.addEventListener('gesturestart', (e) => {
+    // Disable zoom on mobile Safari.
+    e.preventDefault();
+});
