@@ -81,3 +81,16 @@ document.addEventListener('gesturestart', (e) => {
     // Disable zoom on mobile Safari.
     e.preventDefault();
 });
+
+if (process.env.NODE_ENV === 'development') {
+    // Debug mode.
+    let render = Matter.Render.create({
+        element: document.getElementById('debug'),
+        engine: engine,
+        options: {
+            height: 800
+        }
+    });
+    
+    Matter.Render.run(render);
+}
