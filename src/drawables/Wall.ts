@@ -14,11 +14,15 @@ imageGold.src = box_gold;
  * Creates a new Drawable containing a wall block.
  * @param x 
  * @param y 
+ * @param color
  * @param width 
  * @param height 
  */
-export default function Wall(x: number, y: number, color: Color): Drawable {
-    const body = Matter.Bodies.rectangle(x + boxWidth / 2, y + boxWidth / 2, boxWidth, boxWidth, { mass: Infinity, inertia: Infinity });
+export default function Wall(x: number, y: number, color: Color, width = 1, height = 1): Drawable {
+    const totalWidth = boxWidth * width;
+    const totalHeight = boxWidth * height;
+
+    const body = Matter.Bodies.rectangle(x + totalWidth / 2, y + totalHeight / 2, totalWidth, totalHeight, { mass: Infinity, inertia: Infinity });
     
     body.isStatic = true;
     body.restitution = 1;
@@ -36,7 +40,7 @@ export default function Wall(x: number, y: number, color: Color): Drawable {
             const pattern = ctx.createPattern(image, 'repeat');
             ctx.fillStyle = pattern;
         }
-        ctx.fillRect(body.position.x - boxWidth / 2, body.position.y - boxWidth / 2, boxWidth, boxWidth);
+        ctx.fillRect(body.position.x - totalWidth / 2, body.position.y - totalHeight / 2, totalWidth, totalHeight);
     }
 
     return {
