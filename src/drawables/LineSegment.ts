@@ -11,7 +11,7 @@ import { Drawable } from '../Types';
 export default function LineSegment(x1: number, y1: number, x2: number, y2: number): Drawable {
     const angle = Math.atan2(y2 - y1, x2 - x1);
     const height = 10;
-    const width = Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2)) + 1;
+    const width = Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2)) + 5;
 
     if (width < 2) return null;
 
