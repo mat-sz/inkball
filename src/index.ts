@@ -35,7 +35,11 @@ const reset = (map: number[][]) => {
 
 reset(maps[currentMapIndex]);
 
-document.getElementById("reset").addEventListener("click", () => reset(maps[currentMapIndex]));
+document.getElementById("reset-game").addEventListener("click", () => {
+    currentMapIndex = 0;
+    reset(maps[currentMapIndex]);
+});
+document.getElementById("reset-level").addEventListener("click", () => reset(maps[currentMapIndex]));
 
 engine.world.gravity.x = 0;
 engine.world.gravity.y = 0;
