@@ -83,6 +83,8 @@ document.addEventListener('gesturestart', (e) => {
 });
 
 if (process.env.NODE_ENV === 'development') {
+    document.getElementById("canvases").style.display = 'flex';
+    
     // Debug mode.
     let render = Matter.Render.create({
         element: document.getElementById('debug'),
