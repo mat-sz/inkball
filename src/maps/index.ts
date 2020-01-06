@@ -1,5 +1,16 @@
-import map01 from './map01';
-import map02 from './map02';
 import victory from './victory';
+import generateMap from '../functions/generateMap';
 
-export default [map01, map02, victory];
+export default [
+    generateMap(1),
+    generateMap(1),
+    generateMap(1),
+    generateMap(2),
+    generateMap(2),
+    generateMap(2),
+    generateMap(2),
+    generateMap(3),
+    generateMap(3),
+    generateMap(3),
+    victory
+];
