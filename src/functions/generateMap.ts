@@ -24,7 +24,7 @@ function addWall(map: number[][], x: number, y: number, vertical: boolean, lengt
 
 // Extremely awful code ahead.
 // TODO: rewrite.
-export default function generateMap(difficulty: number) {
+export default function generateMap(difficulty: number, forcedWallMode?: number) {
     let map: number[][] = [];
 
     // Create the map array with walls.
@@ -39,7 +39,7 @@ export default function generateMap(difficulty: number) {
         }
     }
 
-    const wallMode: number = random(0, 4);
+    const wallMode: number = typeof forcedWallMode !== 'undefined' ? forcedWallMode : random(0, 4);
 
     switch (difficulty) {
         case 1:
@@ -77,7 +77,7 @@ export default function generateMap(difficulty: number) {
                 map[random(6, MAP_SIZE-7)][random(MAP_SIZE-6, MAP_SIZE-2)] = MapObject.GOAL_ANY;
             } else {
                 map[random(1, 4)][random(1, MAP_SIZE-2)] = MapObject.BALL_RED;
-                map[random(MAP_SIZE-5, MAP_SIZE-2)][random(1, MAP_SIZE-2)] = MapObject.GOAL_ANY;
+                map[random(MAP_SIZE-4, MAP_SIZE-3)][random(1, MAP_SIZE-2)] = MapObject.GOAL_ANY;
             }
             break;
         case 2:
@@ -149,7 +149,7 @@ export default function generateMap(difficulty: number) {
             } else {
                 map[random(1, 4)][random(1, MAP_SIZE-2)] = MapObject.BALL_RED;
                 map[random(1, 4)][random(1, MAP_SIZE-2)] = MapObject.BALL_BLUE;
-                map[random(MAP_SIZE-5, MAP_SIZE-2)][random(1, MAP_SIZE-2)] = MapObject.GOAL_ANY;
+                map[random(MAP_SIZE-4, MAP_SIZE-3)][random(1, MAP_SIZE-2)] = MapObject.GOAL_ANY;
             }
             break;
         case 3:
@@ -222,8 +222,8 @@ export default function generateMap(difficulty: number) {
             } else {
                 map[random(1, 4)][random(1, MAP_SIZE-2)] = MapObject.BALL_RED;
                 map[random(1, 4)][random(1, MAP_SIZE-2)] = MapObject.BALL_BLUE;
-                map[random(MAP_SIZE-5, MAP_SIZE-2)][random(1, 9)] = MapObject.GOAL_BLUE;
-                map[random(MAP_SIZE-5, MAP_SIZE-2)][random(10, MAP_SIZE-2)] = MapObject.GOAL_RED;
+                map[random(MAP_SIZE-4, MAP_SIZE-3)][random(1, 9)] = MapObject.GOAL_BLUE;
+                map[random(MAP_SIZE-4, MAP_SIZE-3)][random(10, MAP_SIZE-2)] = MapObject.GOAL_RED;
             }
             break;
     }
