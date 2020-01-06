@@ -16,6 +16,14 @@ body {
     margin: 0;
 }
 
+.canvases {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 0 10px;
+}
+
 canvas {
     max-width: 100%;
     height: auto;

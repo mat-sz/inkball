@@ -33,7 +33,9 @@ const reset = (map: number[][]) => {
     prepareMap(map, world, gameState);
 }
 
-setImmediate(() => reset(maps[currentMapIndex]));
+// Timeout necessary because of ball speed being too high
+// on the first load.
+setTimeout(() => reset(maps[currentMapIndex]), 100);
 
 document.getElementById("reset-game").addEventListener("click", () => {
     currentMapIndex = 0;
@@ -54,7 +56,7 @@ detectCollisions(engine, gameState,
     reset(maps[currentMapIndex]);
 },
 () => {
-    // Defeat :c
+    // Defeat.
     reset(maps[currentMapIndex]);
 },
 () => {
