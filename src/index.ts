@@ -23,6 +23,9 @@ const gameState: GameState = {
     lines: [[]],
 };
 
+const resetGameButton = document.getElementById("reset-game");
+const resetLevelButton = document.getElementById("reset-level");
+
 let currentMapIndex = 0;
 const reset = (map: number[][]) => {
     Matter.World.clear(world, false);
@@ -31,17 +34,19 @@ const reset = (map: number[][]) => {
     gameState.balls = [];
     gameState.lines = [[]];
     prepareMap(map, world, gameState);
+
+    resetLevelButton.innerText = "Reset level (" + (currentMapIndex + 1) + "/" + (maps.length - 1) + ")";
 }
 
 // Timeout necessary because of ball speed being too high
 // on the first load.
 setTimeout(() => reset(maps[currentMapIndex]), 100);
 
-document.getElementById("reset-game").addEventListener("click", () => {
+resetGameButton.addEventListener("click", () => {
     currentMapIndex = 0;
     reset(maps[currentMapIndex]);
 });
-document.getElementById("reset-level").addEventListener("click", () => reset(maps[currentMapIndex]));
+resetLevelButton.addEventListener("click", () => reset(maps[currentMapIndex]));
 
 engine.world.gravity.x = 0;
 engine.world.gravity.y = 0;
