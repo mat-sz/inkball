@@ -28,7 +28,7 @@ export default function Ball(x: number, y: number, color: Color): Drawable {
     body.friction = 0;
     body.frictionAir = 0;
     body.frictionStatic = 1;
-    body.force = {x: 0.01, y: 0.01};
+    body.force = {x: 0.02, y: 0.02};
         
     let image: HTMLImageElement = null;
     

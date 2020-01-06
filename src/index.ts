@@ -33,7 +33,7 @@ const reset = (map: number[][]) => {
     prepareMap(map, world, gameState);
 }
 
-reset(maps[currentMapIndex]);
+setImmediate(() => reset(maps[currentMapIndex]));
 
 document.getElementById("reset-game").addEventListener("click", () => {
     currentMapIndex = 0;
