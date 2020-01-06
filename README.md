@@ -1,7 +1,15 @@
 # inkball
 
 <p align="center">
-    <img src="https://raw.githubusercontent.com/mat-sz/inkball/master/screenshot.png" alt="Screenshot">
+    <a href="https://matsz.dev/inkball/">
+        <strong>Click here to play the game.</strong>
+    </a>
+</p>
+
+<p align="center">
+    <a href="https://matsz.dev/inkball/">
+        <img src="https://raw.githubusercontent.com/mat-sz/inkball/master/screenshot.png" alt="Screenshot">
+    </a>
 </p>
 
 A TypeScript reimplementation of the game included with Windows Vista. Uses [matter-js](https://brm.io/matter-js/) as the physics engine. Canvas rendered is my own.
