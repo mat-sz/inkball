@@ -1,13 +1,13 @@
 # inkball
 
 <p align="center">
-    <a href="https://matsz.dev/inkball/">
+    <a href="https://demo.mat.dev/inkball/">
         <strong>Click here to play the game.</strong>
     </a>
 </p>
 
 <p align="center">
-    <a href="https://matsz.dev/inkball/">
+    <a href="https://demo.mat.dev/inkball/">
         <img src="https://raw.githubusercontent.com/mat-sz/inkball/master/screenshot.png" alt="Screenshot">
     </a>
 </p>
